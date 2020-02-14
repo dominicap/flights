@@ -30,7 +30,7 @@ struct Flights: View {
             Color("backgroundColor")
                 .edgesIgnoringSafeArea(.all)
             
-            VStack(spacing: 0) {
+            VStack(spacing: 12) {
                 VStack(spacing: 12) {
                     HStack {
                         Text("Flights")
