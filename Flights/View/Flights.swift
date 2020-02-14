@@ -1,5 +1,5 @@
 //
-//  FlightsView.swift
+//  Flights.swift
 //  Flights
 //
 //  Created by Dominic Philip on 1/30/20.
@@ -23,19 +23,45 @@ struct Flights: View {
         .sheet(isPresented: $didClickAddFlight) {
             AddFlight()
         }
-        
     }
     
     var body: some View {
         ZStack {
-            NavigationView {
-                Color("backgroundColor")
-                    .edgesIgnoringSafeArea(.all)
-                    
-                    .navigationBarTitle(Text("Flights"))
-                    .navigationBarItems(trailing: addFlight)
+            Color("backgroundColor")
+                .edgesIgnoringSafeArea(.all)
+            VStack(spacing: 12) {
+                HStack {
+                    Text("Flights")
+                        .font(Font.largeTitle.bold())
+                    Spacer()
+                    addFlight
+                }
+                Divider()
+                Spacer()
             }
+            .padding(paddingSize())
+            FlightCard()
+                .padding(.top, 24)
         }
     }
     
+    private func paddingSize() -> EdgeInsets {
+        switch (UIDevice.current.userInterfaceIdiom) {
+        case .pad:
+            return EdgeInsets(top: 48, leading: 48, bottom: 16, trailing: 48)
+        case .phone:
+            return EdgeInsets(top: 48, leading: 24, bottom: 16, trailing: 24)
+        default:
+            return EdgeInsets(top: 16, leading: 16, bottom: 16, trailing: 16)
+        }
+    }
+    
+}
+
+
+struct FlightsPreview : PreviewProvider {
+    static var previews: some View {
+        Flights()
+            .previewDevice(PreviewDevice(rawValue: "iPad8,1"))
+    }
 }

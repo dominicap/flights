@@ -10,14 +10,17 @@
 		B66DEBB823E4C7AA00B62FDA /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6C1B21623E3E9720069637E /* AppDelegate.swift */; };
 		B66DEBB923E4C7AA00B62FDA /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6C1B21823E3E9720069637E /* SceneDelegate.swift */; };
 		B66DEBBA23E4C7AA00B62FDA /* Flights.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6C1B21A23E3E9720069637E /* Flights.swift */; };
+		B68FFDBF23EC9FE1005137B2 /* FlightCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = B68FFDBE23EC9FE1005137B2 /* FlightCard.swift */; };
 		B6C1B21D23E3E9730069637E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B6C1B21C23E3E9730069637E /* Assets.xcassets */; };
 		B6C1B22023E3E9730069637E /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B6C1B21F23E3E9730069637E /* Preview Assets.xcassets */; };
 		B6C1B22323E3E9730069637E /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B6C1B22123E3E9730069637E /* LaunchScreen.storyboard */; };
+		B6C7C82423F1DCD900BAD527 /* Flight.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6C7C82323F1DCD900BAD527 /* Flight.swift */; };
 		B6E0A88D23E4D51A00D529D5 /* AddFlight.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6E0A88C23E4D51A00D529D5 /* AddFlight.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		B6C1B21323E3E9720069637E /* Flights.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Flights.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		B68FFDBE23EC9FE1005137B2 /* FlightCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FlightCard.swift; sourceTree = "<group>"; };
+		B6C1B21323E3E9720069637E /* FlightTracker.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FlightTracker.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B6C1B21623E3E9720069637E /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		B6C1B21823E3E9720069637E /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
 		B6C1B21A23E3E9720069637E /* Flights.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Flights.swift; sourceTree = "<group>"; };
@@ -25,6 +28,7 @@
 		B6C1B21F23E3E9730069637E /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		B6C1B22223E3E9730069637E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		B6C1B22423E3E9730069637E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		B6C7C82323F1DCD900BAD527 /* Flight.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Flight.swift; sourceTree = "<group>"; };
 		B6E0A88C23E4D51A00D529D5 /* AddFlight.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddFlight.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -44,6 +48,7 @@
 			children = (
 				B6C1B21A23E3E9720069637E /* Flights.swift */,
 				B6E0A88C23E4D51A00D529D5 /* AddFlight.swift */,
+				B68FFDBE23EC9FE1005137B2 /* FlightCard.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -59,7 +64,7 @@
 		B6C1B21423E3E9720069637E /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				B6C1B21323E3E9720069637E /* Flights.app */,
+				B6C1B21323E3E9720069637E /* FlightTracker.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -67,6 +72,7 @@
 		B6C1B21523E3E9720069637E /* Flights */ = {
 			isa = PBXGroup;
 			children = (
+				B6C7C82223F1DCD000BAD527 /* Model */,
 				B66DEBBB23E4C8E200B62FDA /* View */,
 				B6C1B21623E3E9720069637E /* AppDelegate.swift */,
 				B6C1B21823E3E9720069637E /* SceneDelegate.swift */,
@@ -86,6 +92,14 @@
 			path = "Preview Content";
 			sourceTree = "<group>";
 		};
+		B6C7C82223F1DCD000BAD527 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				B6C7C82323F1DCD900BAD527 /* Flight.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -103,7 +117,7 @@
 			);
 			name = Flights;
 			productName = Flights;
-			productReference = B6C1B21323E3E9720069637E /* Flights.app */;
+			productReference = B6C1B21323E3E9720069637E /* FlightTracker.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -160,7 +174,9 @@
 				B66DEBB823E4C7AA00B62FDA /* AppDelegate.swift in Sources */,
 				B6E0A88D23E4D51A00D529D5 /* AddFlight.swift in Sources */,
 				B66DEBB923E4C7AA00B62FDA /* SceneDelegate.swift in Sources */,
+				B6C7C82423F1DCD900BAD527 /* Flight.swift in Sources */,
 				B66DEBBA23E4C7AA00B62FDA /* Flights.swift in Sources */,
+				B68FFDBF23EC9FE1005137B2 /* FlightCard.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -305,8 +321,8 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.dominicphilip.Flights;
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_BUNDLE_IDENTIFIER = com.dominicphilip.FlightTracker;
+				PRODUCT_NAME = FlightTracker;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -325,8 +341,8 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.dominicphilip.Flights;
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_BUNDLE_IDENTIFIER = com.dominicphilip.FlightTracker;
+				PRODUCT_NAME = FlightTracker;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};

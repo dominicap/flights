@@ -11,12 +11,16 @@ import SwiftUI
 struct AddFlight: View {
     
     @Environment(\.presentationMode) var presentationMode
-    
-    var add: some View {
-        Button(action: {
-            // TODO: Confirm and Add Flight
-        }) {
-            Text("Add")
+  
+    var next: some View {
+        NavigationLink(destination: Text("Continue")) {
+            Text("Continue")
+                .padding()
+                .frame(width: 360)
+                .font(Font.headline)
+                .foregroundColor(Color.white)
+                .background(Color.blue)
+                .cornerRadius(12)
         }
     }
     
@@ -30,17 +34,19 @@ struct AddFlight: View {
     
     var body: some View {
         ZStack {
-            NavigationView {
-                Color("backgroundColor")
-                    .edgesIgnoringSafeArea(.all)
-                    .navigationBarItems(leading: cancel)
+            VStack {
+                Spacer()
+                next
             }
-            VStack(alignment: .center) {
-                Text("Add a Flight")
-                    .bold()
-                    .font(.largeTitle)
-            }
+            .padding(.bottom, 48)
         }
     }
  
+}
+
+struct AddFlightPreview : PreviewProvider {
+    static var previews: some View {
+        AddFlight()
+            .previewDevice(PreviewDevice(rawValue: "iPhone 11"))
+    }
 }
