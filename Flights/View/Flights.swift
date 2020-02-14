@@ -29,30 +29,33 @@ struct Flights: View {
         ZStack {
             Color("backgroundColor")
                 .edgesIgnoringSafeArea(.all)
-            VStack(spacing: 12) {
-                HStack {
-                    Text("Flights")
-                        .font(Font.largeTitle.bold())
-                    Spacer()
-                    addFlight
+            
+            VStack(spacing: 0) {
+                VStack(spacing: 12) {
+                    HStack {
+                        Text("Flights")
+                            .font(Font.largeTitle.bold())
+                        Spacer()
+                        addFlight
+                    }
+                    Divider()
                 }
-                Divider()
-                Spacer()
+                ScrollView {
+                    FlightCard()
+                }
             }
             .padding(paddingSize())
-            FlightCard()
-                .padding(.top, 24)
         }
     }
     
     private func paddingSize() -> EdgeInsets {
         switch (UIDevice.current.userInterfaceIdiom) {
         case .pad:
-            return EdgeInsets(top: 48, leading: 48, bottom: 16, trailing: 48)
+            return EdgeInsets(top: 48, leading: 48, bottom: 0, trailing: 48)
         case .phone:
-            return EdgeInsets(top: 48, leading: 24, bottom: 16, trailing: 24)
+            return EdgeInsets(top: 48, leading: 24, bottom: 0, trailing: 24)
         default:
-            return EdgeInsets(top: 16, leading: 16, bottom: 16, trailing: 16)
+            return EdgeInsets(top: 16, leading: 16, bottom: 0, trailing: 16)
         }
     }
     
@@ -62,6 +65,6 @@ struct Flights: View {
 struct FlightsPreview : PreviewProvider {
     static var previews: some View {
         Flights()
-            .previewDevice(PreviewDevice(rawValue: "iPad8,1"))
+            .previewDevice(PreviewDevice(rawValue: "iPhone 11"))
     }
 }

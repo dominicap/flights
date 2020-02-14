@@ -9,7 +9,9 @@
 import SwiftUI
 
 struct FlightCard: View {
-
+    
+    @Environment(\.colorScheme) var colorScheme: ColorScheme
+    
     var flightHeader: some View {
         HStack {
             VStack(alignment: .leading) {
@@ -30,10 +32,11 @@ struct FlightCard: View {
                 Text("ON TIME".uppercased())
                     .font(.system(size: 15))
                     .fontWeight(.bold)
-                    .padding(EdgeInsets(top: 3, leading: 6, bottom: 3, trailing: 7))
+                    .multilineTextAlignment(.center)
+                    .padding(EdgeInsets(top: 4, leading: 12, bottom: 4, trailing: 12))
                     .foregroundColor(Color.white)
                     .background(Color.green)
-                    .cornerRadius(50)
+                    .cornerRadius(14)
             }
         }
     }
@@ -168,9 +171,11 @@ struct FlightCard: View {
     
     var body: some View {
         ZStack {
-            Color("backgroundColor")
+            Color("cardColor")
                 .edgesIgnoringSafeArea(.all)
+            
             VStack(spacing: 12) {
+                
                 flightHeader
                 
                 airportCodesCitiesHeader
@@ -276,10 +281,19 @@ struct FlightCard: View {
                     }
                 }
             }
+            .padding(EdgeInsets(top: 18, leading: 24, bottom: 18, trailing: 24))
         }
-        .padding(EdgeInsets(top: 0, leading: 24, bottom: 0, trailing: 24))
+        .cornerRadius(14, antialiased: true)
+        .shadow(color: shadowColor(), radius: 7)
+        .padding()
     }
     
+    private func shadowColor() -> Color {
+        if (colorScheme == .light) {
+            return Color(UIColor.systemGray4)
+        }
+        return Color("backgroundColor")
+    }
 }
 
 struct FlightCard_Previews: PreviewProvider {
