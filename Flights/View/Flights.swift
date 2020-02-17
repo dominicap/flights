@@ -30,21 +30,22 @@ struct Flights: View {
             Color("backgroundColor")
                 .edgesIgnoringSafeArea(.all)
             
-            VStack(spacing: 12) {
+            ScrollView {
                 VStack(spacing: 12) {
-                    HStack {
-                        Text("Flights")
-                            .font(Font.largeTitle.bold())
-                        Spacer()
-                        addFlight
+                    VStack(spacing: 12) {
+                        HStack {
+                            Text("Flights")
+                                .font(Font.largeTitle.bold())
+                            Spacer()
+                            addFlight
+                        }
+                        Divider()
                     }
-                    Divider()
-                }
-                ScrollView {
+                    .padding(paddingSize())
                     FlightCard()
+                    .padding(EdgeInsets(top: 0, leading: 12, bottom: 0, trailing: 12))
                 }
             }
-            .padding(paddingSize())
         }
     }
     

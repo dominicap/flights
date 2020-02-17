@@ -12,6 +12,8 @@ struct FlightCard: View {
     
     @Environment(\.colorScheme) var colorScheme: ColorScheme
     
+    @State var statusButtonText = "ON TIME"
+    
     var flightHeader: some View {
         HStack {
             VStack(alignment: .leading) {
@@ -27,9 +29,11 @@ struct FlightCard: View {
             }
             Spacer()
             Button(action: {
-                print("Foo")
+                withAnimation(.spring()) {
+                    print("Foo")
+                }
             }) {
-                Text("ON TIME".uppercased())
+                Text(self.statusButtonText)
                     .font(.system(size: 15))
                     .fontWeight(.bold)
                     .multilineTextAlignment(.center)
@@ -284,7 +288,7 @@ struct FlightCard: View {
             .padding(EdgeInsets(top: 18, leading: 24, bottom: 18, trailing: 24))
         }
         .cornerRadius(14, antialiased: true)
-        .shadow(color: shadowColor(), radius: 7)
+        .shadow(color: shadowColor(), radius: 12, y: 6)
         .padding()
     }
     
