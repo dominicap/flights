@@ -10,8 +10,6 @@ import SwiftUI
 
 struct FlightCard: View {
     
-    @Environment(\.colorScheme) var colorScheme: ColorScheme
-    
     @State var statusButtonText = "ON TIME"
     
     var flightHeader: some View {
@@ -29,8 +27,14 @@ struct FlightCard: View {
             }
             Spacer()
             Button(action: {
-                withAnimation(.spring()) {
-                    print("Foo")
+                if (self.statusButtonText == "ON TIME") {
+                    withAnimation(.easeIn) {
+                        self.statusButtonText = "ARRIVES IN 10 HRS"
+                    }
+                } else {
+                    withAnimation(.easeOut) {
+                        self.statusButtonText = "ON TIME"
+                    }
                 }
             }) {
                 Text(self.statusButtonText)
@@ -177,126 +181,123 @@ struct FlightCard: View {
         ZStack {
             Color("cardColor")
                 .edgesIgnoringSafeArea(.all)
-            
             VStack(spacing: 12) {
-                
-                flightHeader
-                
-                airportCodesCitiesHeader
+//                FlightMapView()
+//                    .frame(height: 288)
+                Spacer()
                 
                 VStack(spacing: 12) {
-                    departureArrivalHeader
-                    VStack(spacing: 36) {
-                        ZStack {
-                            HStack {
-                                departureInformation
-                                Spacer()
-                                arrivalInformation
+                    flightHeader
+                    
+                    airportCodesCitiesHeader
+                    
+                    VStack(spacing: 12) {
+                        departureArrivalHeader
+                        VStack(spacing: 36) {
+                            ZStack {
+                                HStack {
+                                    departureInformation
+                                    Spacer()
+                                    arrivalInformation
+                                }
+                                timeTerminalGateHeader
                             }
-                            timeTerminalGateHeader
+//                            Divider()
+                            Spacer() // just add
                         }
-                        Divider()
                     }
+//                    VStack(spacing: 16) {
+//                        HStack {
+//                            VStack(alignment: .leading, spacing: 3) {
+//                                Text("ALTITUDE".uppercased())
+//                                    .font(.system(size: 13))
+//                                    .fontWeight(.bold)
+//                                    .foregroundColor(Color(UIColor.secondaryLabel))
+//                                Text("10972 METERS".uppercased())
+//                                    .font(.system(size: 11))
+//                                    .fontWeight(.semibold)
+//                                    .foregroundColor(Color(UIColor.tertiaryLabel))
+//                            }
+//                            Spacer()
+//                            VStack(alignment: .trailing, spacing: 3) {
+//                                Text("SPEED".uppercased())
+//                                    .font(.system(size: 13))
+//                                    .fontWeight(.bold)
+//                                    .foregroundColor(Color(UIColor.secondaryLabel))
+//                                Text("900 KMPH".uppercased())
+//                                    .font(.system(size: 11))
+//                                    .fontWeight(.semibold)
+//                                    .foregroundColor(Color(UIColor.tertiaryLabel))
+//                            }
+//                        }
+//                        HStack {
+//                            VStack(alignment: .leading, spacing: 3) {
+//                                Text("LOCATION".uppercased())
+//                                    .font(.system(size: 13))
+//                                    .fontWeight(.bold)
+//                                    .foregroundColor(Color(UIColor.secondaryLabel))
+//                                Text("ATLANTIC OCEAN".uppercased())
+//                                    .font(.system(size: 11))
+//                                    .fontWeight(.semibold)
+//                                    .foregroundColor(Color(UIColor.tertiaryLabel))
+//                            }
+//                            Spacer()
+//                            VStack(alignment: .trailing, spacing: 3) {
+//                                Text("DIRECTION".uppercased())
+//                                    .font(.system(size: 13))
+//                                    .fontWeight(.bold)
+//                                    .foregroundColor(Color(UIColor.secondaryLabel))
+//                                Text("72 DEG".uppercased())
+//                                    .font(.system(size: 11))
+//                                    .fontWeight(.semibold)
+//                                    .foregroundColor(Color(UIColor.tertiaryLabel))
+//                            }
+//                        }
+//                    }
+                    
+                    
+//                    Divider()
+                    
+//                    VStack(spacing: 3) {
+//                        HStack {
+//                            Text("UPDATED".uppercased())
+//                                .font(.system(size: 13))
+//                                .fontWeight(.bold)
+//                                .foregroundColor(Color(UIColor.secondaryLabel))
+//                            Spacer()
+//                            Text("STATUS".uppercased())
+//                                .font(.system(size: 13))
+//                                .fontWeight(.bold)
+//                                .foregroundColor(Color(UIColor.secondaryLabel))
+//
+//                        }
+//                        VStack {
+//                            HStack {
+//                                Text("WED, FEB 9".uppercased())
+//                                    .font(.system(size: 11))
+//                                    .fontWeight(.semibold)
+//                                    .foregroundColor(Color(UIColor.tertiaryLabel))
+//                                Spacer()
+//                                Text("EN-ROUTE".uppercased())
+//                                    .font(.system(size: 11))
+//                                    .fontWeight(.semibold)
+//                                    .foregroundColor(Color(UIColor.tertiaryLabel))
+//                            }
+//                            HStack {
+//                                Text("1:00 AM".uppercased())
+//                                    .font(.system(size: 11))
+//                                    .fontWeight(.semibold)
+//                                    .foregroundColor(Color(UIColor.tertiaryLabel))
+//                                Spacer()
+//                            }
+//                        }
+//                    }
                 }
-                VStack(spacing: 16) {
-                    HStack {
-                        VStack(alignment: .leading, spacing: 3) {
-                            Text("ALTITUDE".uppercased())
-                                .font(.system(size: 13))
-                                .fontWeight(.bold)
-                                .foregroundColor(Color(UIColor.secondaryLabel))
-                            Text("10972 METERS".uppercased())
-                                .font(.system(size: 11))
-                                .fontWeight(.semibold)
-                                .foregroundColor(Color(UIColor.tertiaryLabel))
-                        }
-                        Spacer()
-                        VStack(alignment: .trailing, spacing: 3) {
-                            Text("SPEED".uppercased())
-                                .font(.system(size: 13))
-                                .fontWeight(.bold)
-                                .foregroundColor(Color(UIColor.secondaryLabel))
-                            Text("900 KMPH".uppercased())
-                                .font(.system(size: 11))
-                                .fontWeight(.semibold)
-                                .foregroundColor(Color(UIColor.tertiaryLabel))
-                        }
-                    }
-                    HStack {
-                        VStack(alignment: .leading, spacing: 3) {
-                            Text("LOCATION".uppercased())
-                                .font(.system(size: 13))
-                                .fontWeight(.bold)
-                                .foregroundColor(Color(UIColor.secondaryLabel))
-                            Text("ATLANTIC OCEAN".uppercased())
-                                .font(.system(size: 11))
-                                .fontWeight(.semibold)
-                                .foregroundColor(Color(UIColor.tertiaryLabel))
-                        }
-                        Spacer()
-                        VStack(alignment: .trailing, spacing: 3) {
-                            Text("DIRECTION".uppercased())
-                                .font(.system(size: 13))
-                                .fontWeight(.bold)
-                                .foregroundColor(Color(UIColor.secondaryLabel))
-                            Text("72 DEG".uppercased())
-                                .font(.system(size: 11))
-                                .fontWeight(.semibold)
-                                .foregroundColor(Color(UIColor.tertiaryLabel))
-                        }
-                    }
-                }
+                    .padding(EdgeInsets(top: 0, leading: 24, bottom: 0, trailing: 24))
                 
-                
-                Divider()
-                
-                VStack(spacing: 3) {
-                    HStack {
-                        Text("UPDATED".uppercased())
-                            .font(.system(size: 13))
-                            .fontWeight(.bold)
-                            .foregroundColor(Color(UIColor.secondaryLabel))
-                        Spacer()
-                        Text("STATUS".uppercased())
-                            .font(.system(size: 13))
-                            .fontWeight(.bold)
-                            .foregroundColor(Color(UIColor.secondaryLabel))
-                        
-                    }
-                    VStack {
-                        HStack {
-                            Text("WED, FEB 9".uppercased())
-                                .font(.system(size: 11))
-                                .fontWeight(.semibold)
-                                .foregroundColor(Color(UIColor.tertiaryLabel))
-                            Spacer()
-                            Text("EN-ROUTE".uppercased())
-                                .font(.system(size: 11))
-                                .fontWeight(.semibold)
-                                .foregroundColor(Color(UIColor.tertiaryLabel))
-                        }
-                        HStack {
-                            Text("1:00 AM".uppercased())
-                                .font(.system(size: 11))
-                                .fontWeight(.semibold)
-                                .foregroundColor(Color(UIColor.tertiaryLabel))
-                            Spacer()
-                        }
-                    }
-                }
+//                Spacer()
             }
-            .padding(EdgeInsets(top: 18, leading: 24, bottom: 18, trailing: 24))
         }
-        .cornerRadius(14, antialiased: true)
-        .shadow(color: shadowColor(), radius: 12, y: 6)
-        .padding()
-    }
-    
-    private func shadowColor() -> Color {
-        if (colorScheme == .light) {
-            return Color(UIColor.systemGray4)
-        }
-        return Color("backgroundColor")
     }
 }
 

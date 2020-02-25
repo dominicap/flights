@@ -10,7 +10,10 @@ import SwiftUI
 
 struct Flights: View {
     
+    @Environment(\.colorScheme) var colorScheme: ColorScheme
+    
     @State private var didClickAddFlight = false
+    @State private var show = false
     
     var addFlight: some View {
         Button(action: {
@@ -30,34 +33,53 @@ struct Flights: View {
             Color("backgroundColor")
                 .edgesIgnoringSafeArea(.all)
             
-            ScrollView {
+            ScrollView(.vertical, showsIndicators: false) {
                 VStack(spacing: 12) {
-                    VStack(spacing: 12) {
-                        HStack {
-                            Text("Flights")
-                                .font(Font.largeTitle.bold())
-                            Spacer()
-                            addFlight
-                        }
-                        Divider()
+                    HStack {
+                        Text("Flights")
+                            .font(Font.largeTitle.bold())
+                        Spacer()
+                        addFlight
                     }
-                    .padding(paddingSize())
-                    FlightCard()
-                    .padding(EdgeInsets(top: 0, leading: 12, bottom: 0, trailing: 12))
+                    Divider()
                 }
+                .padding(paddingSize(paddingAmount: .title))
+                
+                FlightCard()
+                    .cornerRadius(14, antialiased: true)
+                    .shadow(color: shadowColor(), radius: 12, y: 6)
+                    .padding(paddingSize(paddingAmount: .card))
+                Spacer()
             }
         }
     }
     
-    private func paddingSize() -> EdgeInsets {
+    private func paddingSize(paddingAmount: PaddingAmount) -> EdgeInsets {
         switch (UIDevice.current.userInterfaceIdiom) {
         case .pad:
-            return EdgeInsets(top: 48, leading: 48, bottom: 0, trailing: 48)
+            switch (paddingAmount) {
+            case .title:
+                return EdgeInsets(top: 48, leading: 48, bottom: 0, trailing: 48)
+            case .card:
+                return EdgeInsets(top: 12, leading: 48, bottom: 0, trailing: 48)
+            }
         case .phone:
-            return EdgeInsets(top: 48, leading: 24, bottom: 0, trailing: 24)
+            switch (paddingAmount) {
+            case .title:
+                return EdgeInsets(top: 48, leading: 24, bottom: 0, trailing: 24)
+            case .card:
+                return EdgeInsets(top: 12, leading: 24, bottom: 0, trailing: 24)
+            }
         default:
             return EdgeInsets(top: 16, leading: 16, bottom: 0, trailing: 16)
         }
+    }
+    
+    private func shadowColor() -> Color {
+        if (colorScheme == .light) {
+            return Color(UIColor.systemGray4)
+        }
+        return Color("backgroundColor")
     }
     
 }
@@ -68,4 +90,10 @@ struct FlightsPreview : PreviewProvider {
         Flights()
             .previewDevice(PreviewDevice(rawValue: "iPhone 11"))
     }
+}
+
+
+enum PaddingAmount {
+    case title
+    case card
 }
