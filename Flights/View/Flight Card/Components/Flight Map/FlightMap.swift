@@ -1,5 +1,5 @@
 //
-//  FlightMapView.swift
+//  FlightMap.swift
 //  Flights
 //
 //  Created by Dominic Philip on 2/17/20.
@@ -9,9 +9,13 @@
 import SwiftUI
 import MapKit
 
-struct FlightMapView: UIViewRepresentable {
+struct FlightMap: UIViewRepresentable {
+
     func makeUIView(context: Context)-> MKMapView {
-        MKMapView(frame: .zero)
+        let mapView = MKMapView(frame: .zero)
+        mapView.mapType = .mutedStandard
+
+        return mapView
     }
     
     func updateUIView(_ view: MKMapView, context: Context) {
@@ -21,10 +25,11 @@ struct FlightMapView: UIViewRepresentable {
         let region = MKCoordinateRegion(center: coordinate, span: span)
         view.setRegion(region, animated: true)
     }
+
 }
 
-struct FlightMapView_Previews: PreviewProvider {
+struct FlightMap_Previews: PreviewProvider {
     static var previews: some View {
-        FlightMapView()
+        FlightMap()
     }
 }

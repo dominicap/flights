@@ -12,27 +12,30 @@ struct Flights: View {
     
     @Environment(\.colorScheme) var colorScheme: ColorScheme
     
-    @State private var didClickAddFlight = false
-    @State private var show = false
-    
+    @State private var addFlightTapped = false
+
+    let settings = Settings()
+
+    @State var selectedFlights = flights
+
     var addFlight: some View {
         Button(action: {
-            self.didClickAddFlight.toggle()
+            self.addFlightTapped.toggle()
         }) {
             Image(systemName: "plus.circle.fill")
                 .font(Font.title.weight(.light))
                 .foregroundColor(Color("systemIconColor"))
         }
-        .sheet(isPresented: $didClickAddFlight) {
+        .sheet(isPresented: $addFlightTapped) {
             AddFlight()
         }
     }
     
     var body: some View {
         ZStack {
-            Color("backgroundColor")
-                .edgesIgnoringSafeArea(.all)
-            
+
+            Color("backgroundColor").edgesIgnoringSafeArea(.all)
+
             ScrollView(.vertical, showsIndicators: false) {
                 VStack(spacing: 12) {
                     HStack {
@@ -43,43 +46,27 @@ struct Flights: View {
                     }
                     Divider()
                 }
-                .padding(paddingSize(paddingAmount: .title))
-                
-                FlightCard()
-                    .cornerRadius(14, antialiased: true)
-                    .shadow(color: shadowColor(), radius: 12, y: 6)
-                    .padding(paddingSize(paddingAmount: .card))
-                Spacer()
+                .padding(settings.paddingSize(paddingAmount: .title))
+
+                ZStack {
+                    VStack(spacing: 36) {
+                        ForEach(selectedFlights.indices, id: \.self) { index in
+                            GeometryReader { geometry in
+                                FlightCard(show: self.$selectedFlights[index].show, flight: self.selectedFlights[index])
+                                    .offset(y: self.selectedFlights[index].show ? -geometry.frame(in: .global).minY : 0)
+                            }
+                            .frame(height: self.selectedFlights[index].show ? UIScreen.main.bounds.height : 368)
+                            .frame(maxWidth: self.selectedFlights[index].show ? UIScreen.main.bounds.width : UIScreen.main.bounds.width - self.settings.frameSize(), maxHeight: 368)
+                            .zIndex(self.selectedFlights[index].show ? 1 : 0)
+                            .statusBar(hidden: self.selectedFlights[index].show ? true : false)
+                        }
+                        Spacer()
+                    }
+                    .frame(width: UIScreen.main.bounds.width)
+                    .animation(.interpolatingSpring(stiffness: 222, damping: 24))
+                }
             }
         }
-    }
-    
-    private func paddingSize(paddingAmount: PaddingAmount) -> EdgeInsets {
-        switch (UIDevice.current.userInterfaceIdiom) {
-        case .pad:
-            switch (paddingAmount) {
-            case .title:
-                return EdgeInsets(top: 48, leading: 48, bottom: 0, trailing: 48)
-            case .card:
-                return EdgeInsets(top: 12, leading: 48, bottom: 0, trailing: 48)
-            }
-        case .phone:
-            switch (paddingAmount) {
-            case .title:
-                return EdgeInsets(top: 48, leading: 24, bottom: 0, trailing: 24)
-            case .card:
-                return EdgeInsets(top: 12, leading: 24, bottom: 0, trailing: 24)
-            }
-        default:
-            return EdgeInsets(top: 16, leading: 16, bottom: 0, trailing: 16)
-        }
-    }
-    
-    private func shadowColor() -> Color {
-        if (colorScheme == .light) {
-            return Color(UIColor.systemGray4)
-        }
-        return Color("backgroundColor")
     }
     
 }
@@ -88,12 +75,6 @@ struct Flights: View {
 struct FlightsPreview : PreviewProvider {
     static var previews: some View {
         Flights()
-            .previewDevice(PreviewDevice(rawValue: "iPhone 11"))
+            .previewDevice(PreviewDevice(rawValue: "iPhone 8"))
     }
-}
-
-
-enum PaddingAmount {
-    case title
-    case card
 }

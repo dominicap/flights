@@ -8,6 +8,9 @@
 
 import UIKit
 
+import SwiftUI
+
+
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
@@ -15,6 +18,19 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
+
+
+        let flightOne = Flight(airline: "Emirates Airlines", flightNumber: "EK 231", status: "ON TIME", timeLeft: "ARRIVES IN 10 HRS", departureICAOCode: "IAD", arrivalICAOCode: "DXB", departureCity: "WASHINGTON DC", arrivalCity: "DUBAI", departureDate: "Wed, Feb 8", departureTime: "10:00 AM", departureTerminal: "Terminal 1", departureGate: "Gate A", arrivalDate: "Thurs, Feb 9", arrivalTime: "10:00 AM", arrivalTerminal: "Terminal 3", arrivalGate: "Gate D", altitude: "10972 Meters", speed: "900 KMPH", location: "ATLANTIC OCEAN", direction: "72 DEG", updatedDate: "Wed, Feb 9", updatedTime: "1:00 AM", enRoute: "EN-ROUTE", show: false)
+
+        let flightTwo = Flight(airline: "All Nippon Airlines", flightNumber: "NH 7", status: "DELAYED", timeLeft: "LEAVES IN 2 HRS", departureICAOCode: "SFO", arrivalICAOCode: "NRT", departureCity: "SAN FRANCISCO", arrivalCity: "TOKYO", departureDate: "Sun, Mar 8", departureTime: "12:00 PM", departureTerminal: "Terminal INTL", departureGate: "Gate G13", arrivalDate: "Mon, Mar 9", arrivalTime: "3:20 PM", arrivalTerminal: "Terminal 5", arrivalGate: "Gate E6", altitude: "9456 Meters", speed: "952 KMPH", location: "PACIFIC OCEAN", direction: "102 DEG", updatedDate: "Sun, Mar 8", updatedTime: "11:00 AM", enRoute: "DELAYED", show: false)
+
+        let flightThree = Flight(airline: "All Nippon Airlines", flightNumber: "NH 7", status: "DELAYED", timeLeft: "LEAVES IN 2 HRS", departureICAOCode: "SFO", arrivalICAOCode: "NRT", departureCity: "SAN FRANCISCO", arrivalCity: "TOKYO", departureDate: "Sun, Mar 8", departureTime: "12:00 PM", departureTerminal: "Terminal INTL", departureGate: "Gate G13", arrivalDate: "Mon, Mar 9", arrivalTime: "3:20 PM", arrivalTerminal: "Terminal 5", arrivalGate: "Gate E6", altitude: "9456 Meters", speed: "952 KMPH", location: "PACIFIC OCEAN", direction: "102 DEG", updatedDate: "Sun, Mar 8", updatedTime: "11:00 AM", enRoute: "DELAYED", show: false)
+
+
+        flights.append(flightOne)
+        flights.append(flightTwo)
+        flights.append(flightThree)
+
         return true
     }
 

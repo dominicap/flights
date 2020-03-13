@@ -8,35 +8,71 @@
 
 struct Flight: Codable {
 
-    // MARK: Geography
-    var latitude: Double
-    var longitude: Double
-    var altitude: Double
-    var direction: Int
+    var airline: String
+    var flightNumber: String
 
-    // MARK: Speed
-    var horizontal: Double
-    var vertical: Double
+    var status: String
+    var timeLeft: String
 
-    // MARK: Departure
-    var departureIATACode: String
     var departureICAOCode: String
-
-    // MARK: Arrival
-    var arrivalIATACode: String
     var arrivalICAOCode: String
 
-    // MARK: Aircraft
-    var aircraftICAOCode: String
+    var departureCity: String
+    var arrivalCity: String
 
-    // MARK: Flight
-    var flightIATACode: String
-    var flightICAOCode: String
+    var departureDate: String
+    var departureTime: String
 
-    // MARK: System
-    var lastUpdate: String
+    var departureTerminal: String
+    var departureGate: String
 
-    // MARK: Status
-    var status: String
+    var arrivalDate: String
+    var arrivalTime: String
+
+    var arrivalTerminal: String
+    var arrivalGate: String
+
+    var altitude: String
+    var speed: String
+    var location: String
+    var direction: String
+
+    var updatedDate: String
+    var updatedTime: String
+    
+    var enRoute: String
+
+    var show: Bool
+
+//    // MARK: Geography
+//    var latitude: Double
+//    var longitude: Double
+//    var altitude: Double
+//    var direction: Int
+//
+//    // MARK: Speed
+//    var horizontal: Double
+//    var vertical: Double
+//
+//    // MARK: Departure
+//    var departureIATACode: String
+//    var departureICAOCode: String
+//
+//    // MARK: Arrival
+//    var arrivalIATACode: String
+//    var arrivalICAOCode: String
+//
+//    // MARK: Aircraft
+//    var aircraftICAOCode: String
+//
+//    // MARK: Flight
+//    var flightIATACode: String
+//    var flightICAOCode: String
+//
+//    // MARK: System
+//    var lastUpdate: String
+//
+//    // MARK: Status
+//    var status: String
 
 }
