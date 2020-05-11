@@ -8,6 +8,7 @@
 
 import SwiftUI
 
+
 struct FlightCard: View {
 
     @Environment(\.colorScheme) var colorScheme: ColorScheme
@@ -22,8 +23,8 @@ struct FlightCard: View {
 
     let flight: Flight
 
-
     var body: some View {
+
         let drag = DragGesture()
             .updating(self.$movement) { drag, state, translation in
                 state = .dragging(translation: drag.translation)
@@ -40,7 +41,7 @@ struct FlightCard: View {
             VStack {
                 HStack {
                     Spacer()
-                    FlightMapCardDismiss(show: $show)
+                    FlightMapDismiss(show: $show)
                         .padding(EdgeInsets(top: 48, leading: 0, bottom: 0, trailing: 24))
                         .blur(radius: position == Position.down ? 0 : 6)
                         .disabled(position == Position.down ? false : true)
@@ -58,7 +59,6 @@ struct FlightCard: View {
                     .onTapGesture { self.show = true }
             }
         }
-
     }
 
 }

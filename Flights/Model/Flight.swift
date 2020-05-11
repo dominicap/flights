@@ -12,6 +12,7 @@ struct Flight: Codable {
     var flightNumber: String
 
     var status: String
+    var onTime: Bool
     var timeLeft: String
 
     var departureICAOCode: String

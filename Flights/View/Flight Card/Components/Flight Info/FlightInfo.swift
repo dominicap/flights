@@ -23,29 +23,29 @@ struct FlightInfo: View {
 
                 VStack(spacing: 3) {
                     Spacer()
-                    FlightMapCardHandle()
+                    FlightMapHandle()
                         .opacity(self.show ? 1 : 0)
-                    FlightCardHeader(flight: flight)
+                    FlightInfoHeader(flight: flight)
                 }
 
 
                 VStack(spacing: 36) {
                     Divider()
-                    FlightCardAirportCodes(flight: flight)
+                    FlightInfoAirportCodes(flight: flight)
                     Divider()
                 }
 
-                FlightCardDepartureArrival(flight: flight)
+                FlightInfoDepartureArrival(flight: flight)
 
                 if self.show {
                     Group {
                         Divider()
 
-                        FlightCardStatistics(flight: flight)
+                        FlightInfoStatistics(flight: flight)
 
                         Divider()
 
-                        FlightCardUpdateStatus(flight: flight)
+                        FlightInfoUpdateStatus(flight: flight)
 
                         Divider()
                     }

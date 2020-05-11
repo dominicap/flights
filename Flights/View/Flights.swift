@@ -13,10 +13,9 @@ struct Flights: View {
     @Environment(\.colorScheme) var colorScheme: ColorScheme
     
     @State private var addFlightTapped = false
+    @State var selectedFlights = flights
 
     let settings = Settings()
-
-    @State var selectedFlights = flights
 
     var addFlight: some View {
         Button(action: {
@@ -33,7 +32,6 @@ struct Flights: View {
     
     var body: some View {
         ZStack {
-
             Color("backgroundColor").edgesIgnoringSafeArea(.all)
 
             ScrollView(.vertical, showsIndicators: false) {
@@ -58,13 +56,12 @@ struct Flights: View {
                             .frame(height: self.selectedFlights[index].show ? UIScreen.main.bounds.height : 368)
                             .frame(maxWidth: self.selectedFlights[index].show ? UIScreen.main.bounds.width : UIScreen.main.bounds.width - self.settings.frameSize(), maxHeight: 368)
                             .zIndex(self.selectedFlights[index].show ? 1 : 0)
-                            .statusBar(hidden: self.selectedFlights[index].show ? true : false)
                         }
-                        Spacer()
                     }
                     .frame(width: UIScreen.main.bounds.width)
                     .animation(.interpolatingSpring(stiffness: 222, damping: 24))
                 }
+                .padding(.bottom, 36)
             }
         }
     }
